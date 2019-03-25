@@ -30,7 +30,7 @@ create table reviews (
     -- a single review belongs to a single restaurant
     restaurant_id integer references restaurants(id),
     -- a single review belongs to a single user
-    user_id integer references users(id),
+    user_id integer references users(id)
     -- While we could capture the "favorite" info here,
     -- we don't want to require users to write a review just to 
     -- add a restaurant to their favorites
@@ -45,8 +45,8 @@ create table reviews (
 -- restaurants have many users through favorites
 create table favorites (
     id serial primary key,               -- This id is optional
-    user_id integer references user(id), -- this is a foreign key to users
-    restaurant_id integer references restaurants(id), -- FK to restaurants
+    user_id integer references users(id), -- this is a foreign key to users
+    restaurant_id integer references restaurants(id) -- FK to restaurants
     -- reviews text -- this is "metadata" about the relationship
                 -- uh oh. this field has a plural name.
                 -- that's no good.
@@ -54,11 +54,11 @@ create table favorites (
 
 ---------------------------------
 
-select * from users
+-- select * from users
 -- this will display the info for the user profile
 
-select * from restaurants
+-- select * from restaurants
 -- this will display the info for restaurant
 
-select * from restaurants where address ilike '%Atlanta%';
+-- select * from restaurants where address ilike '%Atlanta%';
 -- this will provide a narrow search of restaurants for Atlanta, GA
